@@ -24,7 +24,10 @@ static std::string query_one(std::string prompt, bool tty)
 
     std::cout << prompt << "\n";
     while (input.empty())
-        std::getline(std::cin, input);
+    {
+        if (!std::getline(std::cin, input))
+            return ("");
+    }
     if (!tty)
         ttylesslog(input);
     return (input);
