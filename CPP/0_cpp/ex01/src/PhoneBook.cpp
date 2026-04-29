@@ -1,66 +1,130 @@
-
 #include "PhoneBook.hpp"
-#include <string>
-#include <sstream>
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 
-static void print_tenchar_line(const std::string &s, bool last)
-{
-    if (s.length() > 10)
-        std::cout << s.substr(0, 9) << ".";
-    else
-        std::cout << std::setw(10) << s;
-    if (last)
-        std::cout << std::endl;
-    else
-        std::cout << " | ";
+PhoneBook::PhoneBook(void) {
+	_total = 0;
+	_nextIndex = 0;
 }
 
-static void print_complete(const Contact c)
-{
-    std::cout << "First Name:\n" << c.getFirstName() << "\n";
-    std::cout << "Last Name:\n" << c.getLastName() << "\n";
-    std::cout << "Nickname:\n" << c.getNickname() << "\n";
-    std::cout << "Phone Number:\n" << c.getNumber() << "\n";
-    std::cout << "Darkest Secret:\n" << c.getDarkestSecret() << std::endl;
+PhoneBook::~PhoneBook(void) {
 }
 
-static void print_summary(int i, const Contact c)
-{
-    std::ostringstream oss;
-    oss << i;
+int	PhoneBook::_askIndex(void) const {
+	int			index;
+	char		junk;
+	std::string	input;
 
-    print_tenchar_line(oss.str(), false);
-    print_tenchar_line(c.getFirstName(), false);
-    print_tenchar_line(c.getLastName(), false);
-    print_tenchar_line(c.getNickname(), true);
+	std::cout << "Index: ";
+	if (!std::getline(std::cin, input))
+		return (-1);
+	std::stringstream	stream(input);
+	if (!(stream >> index))
+		return (-1);
+	if (stream >> junk)
+		return (-1);
+	return (index);
 }
 
-void    PhoneBook::searchContacts() const
-{
-    if (total == 0)
-    {
-        std::cout << "You have no contacts to display yet\n";
-        std::cout << "Try creating one with the command ADD" << std::endl;
-        return ;
-    }
-    for (int i = 0; i < total; i++)
-        print_summary(i + 1, contacts[i]);
+void	PhoneBook::_borderSummary(bool top) const {
+	std::string	border;
+
+	border += top ? "┌" : "└";
+
+	for (int i = 0; i < 4; i++)
+	{
+		border += "──────────";
+
+		if (i < 3)
+			border += top ? "┬" : "┴";
+	}
+
+	border += top ? "┐" : "┘";
+	std::cout << border << std::endl;
 }
 
-void    PhoneBook::displayContact(int index) const
-{
-    if (index < 1 || index > total)
-        std::cout << "Invalid index" << std::endl;
-    else
-        print_complete(contacts[index - 1]);
+void	PhoneBook::_printSummaryLine(const std::string summary[4]) const {
+	std::string	cutouts[4];
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (summary[i].length() > 10)
+			cutouts[i] = summary[i].substr(0, 9) + ".";
+		else
+			cutouts[i] = summary[i];
+	}
+	std::cout << "│";
+	for (int i = 0; i < 4; i++)
+			std::cout << std::setw(10) << cutouts[i] << "│";
+	std::cout << std::endl;
 }
 
-void    PhoneBook::addContact(const Contact c)
-{
-    if (total < 8)
-        total++;
-    contacts[next_index++] = c;
-    next_index %= 8;
+void	PhoneBook::add(void) {
+	std::string	name;
+	std::string	surname;
+	std::string	nickname;
+	std::string	number;
+	std::string	secret;
+
+	name = _prompt("First name");
+	surname = _prompt("Last name");
+	nickname = _prompt("Nickname");
+	number = _prompt("Phone Number");
+	secret = _prompt("Darkest Secret");
+
+	_contacts[_nextIndex] = Contact(
+			name, surname, nickname,
+			number, secret, _nextIndex + 1
+			);
+
+	if (_total < 8)
+		_total++;
+
+	_nextIndex = (_nextIndex + 1) % 8;
+}
+
+void	PhoneBook::search(void) {
+	int			index;
+	std::string	summary[4];
+
+	if (_total == 0)
+	{
+		std::cout << "Phonebook empty. Try ADDing contacts!" << std::endl;
+		return ;
+	}
+
+	_borderSummary(true);
+
+	std::cout << "│  Index   │   Name   │   Sur.   │ Nickname │" << std::endl;
+	std::cout << "├──────────┼──────────┼──────────┼──────────┤" << std::endl;
+
+	for (int i = 0; i < _total; i++)
+	{
+		_contacts[i].getSummary(summary);
+		_printSummaryLine(summary);
+	}
+	_borderSummary(false);
+
+	index = _askIndex();
+	if (index == -1)
+		std::cout << "Error in index format." << std::endl;
+	else if (index < 1 || index > _total)
+		std::cout << "Index out of range." << std::endl;
+	else
+		std::cout << _contacts[index - 1].getCard() << std::endl;
+}
+
+std::string	PhoneBook::_prompt(const std::string& label) const {
+	std::string	input;
+
+	while (input.empty())
+	{
+		std::cout << label << ": ";
+		if (!std::getline(std::cin, input))
+			return ("");
+		if (input.empty())
+			std::cout << "Field '" << label << "' can't be empty" << std::endl;
+	}
+	return (input);
 }

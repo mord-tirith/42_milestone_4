@@ -1,10 +1,26 @@
-#include "Contact.hpp"
+#include "PhoneBook.hpp"
 #include <iostream>
+#include <string>
 
-int	main()
-{
-	Contact test("John", "Doe", "Jhonny", "333", "Crazy little thing called love I just can't handle it this thing");
+int	main(void) {
+	PhoneBook	phonebook;
+	std::string	command;
 
-	std::cout << test.getCard() << std::endl;
+	while (42)
+	{
+		std::cout << "Enter command [ADD, SEARCH, EXIT]: ";
+
+		if (!std::getline(std::cin, command))
+			break ;
+
+		if (command == "ADD")
+			phonebook.add();
+		else if (command == "SEARCH")
+			phonebook.search();
+		else if (command == "EXIT")
+			break ;
+		else
+			std::cout << "Unknown command: " << command << "." << std::endl;
+	}
 	return (0);
 }
