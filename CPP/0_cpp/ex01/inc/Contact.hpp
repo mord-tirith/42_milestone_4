@@ -1,24 +1,27 @@
-#pragma once
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
+
 #include <string>
 
 class Contact{
-    private:
-        std::string name;
-        std::string surname;
-        std::string nickname;
-        std::string number;
-        std::string secret;
+	 public:
+		 Contact(
+				 const std::string& name, const std::string& surname,
+				 const std::string& nickname, const std::string& number,
+				 const std::string& secret);
+		 std::string getFirstName();
+		 std::string getLastName();
+		 std::string getNickname();
+		 std::string getNumber();
+		 std::string getDarkestSecret();
+		 std::string getCard(void);
 
-    public:
-        void        setFirstName(const std::string &s) { name = s ;}
-        void        setLastName(const std::string &s) { surname = s ;}
-        void        setNickname(const std::string &s) { nickname = s ;}
-        void        setNumber(const std::string &s) { number = s ;}
-        void        setDarkestSecret(const std::string &s) { secret = s ;}
-
-        std::string getFirstName() const { return name ;}
-        std::string getLastName() const { return surname ;}
-        std::string getNickname() const { return nickname ;}
-        std::string getNumber() const { return number ;}
-        std::string getDarkestSecret() const { return secret ;}
+	private:
+		 std::string _name;
+		 std::string _nickname;
+		 std::string _surname;
+		 std::string _number;
+		 std::string _secret;
 };
+
+#endif
