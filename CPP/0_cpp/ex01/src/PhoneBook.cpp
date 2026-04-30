@@ -1,4 +1,5 @@
 #include "PhoneBook.hpp"
+#include "Contact.hpp"
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -81,6 +82,14 @@ void	PhoneBook::add(void) {
 	if (_total < 8)
 		_total++;
 
+	_nextIndex = (_nextIndex + 1) % 8;
+}
+
+void	PhoneBook::silentAdd(Contact c) {
+	_contacts[_nextIndex] = c;
+
+	if (_total < 8)
+		_total++;
 	_nextIndex = (_nextIndex + 1) % 8;
 }
 

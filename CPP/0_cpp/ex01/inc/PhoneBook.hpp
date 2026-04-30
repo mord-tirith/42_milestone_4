@@ -20,6 +20,7 @@ class PhoneBook {
 
 		void	add(void);
 		void	search(void);
+		void	silentAdd(Contact c);
 };
 
 #endif
