@@ -6,12 +6,15 @@
 /*   By: thenriqu <thenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 14:35:40 by thenriqu          #+#    #+#             */
-/*   Updated: 2026/05/01 15:19:37 by thenriqu         ###   ########.fr       */
+/*   Updated: 2026/05/01 19:00:07 by mord             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 #include <iostream>
+
+Zombie::Zombie(void) {
+}
 
 Zombie::Zombie(const std::string& name) {
 	_name = name;
