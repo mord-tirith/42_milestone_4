@@ -6,7 +6,7 @@
 /*   By: thenriqu <thenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 13:25:26 by thenriqu          #+#    #+#             */
-/*   Updated: 2026/05/01 15:31:39 by thenriqu         ###   ########.fr       */
+/*   Updated: 2026/05/01 21:41:04 by mord             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class Zombie
 		std::string	_name;
 };
 
+Zombie*	debugHorde(int N, std::string name);
 Zombie*	zombieHorde(int N, std::string name);
 
 #endif
