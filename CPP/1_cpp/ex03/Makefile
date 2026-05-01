@@ -5,14 +5,14 @@
 #######################
 
 # Basic Variables:
-NAME		= hordeAttack
-PNAME		= Zombie Horde Simulator
+NAME		= violence
+PNAME		= Unnecessary Violence
 INC_DIR		= inc/
 SRC_DIR		= src/
 OBJ_DIR		= .obj/
 
 # File Variables:
-SRC_FILES	= main.cpp Zombie.cpp zombieHorde.cpp
+SRC_FILES	= HumanA.cpp HumanB.cpp main.cpp Weapon.cpp
 SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ			:= $(patsubst $(SRC_DIR)%.cpp, $(OBJ_DIR)%.o, $(SRC))
 
