@@ -6,7 +6,7 @@
 /*   By: thenriqu <thenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 12:46:21 by thenriqu          #+#    #+#             */
-/*   Updated: 2026/05/03 15:03:15 by thenriqu         ###   ########.fr       */
+/*   Updated: 2026/05/03 17:08:19 by thenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ class ClapTrap {
 		ClapTrap(void);
 		ClapTrap(const std::string& name);
 		ClapTrap(const ClapTrap& that);
-		~ClapTrap(void);
+		virtual ~ClapTrap(void);
 
 		ClapTrap&	operator=(const ClapTrap& that);
 
-		void		attack(const std::string& target);
-		void		takeDamage(unsigned int amount);
-		void		beRepaired(unsigned int amount);
+		virtual void	attack(const std::string& target);
+		virtual void	takeDamage(unsigned int amount);
+		virtual void	beRepaired(unsigned int amount);
 
 		int			getHitPoints(void) const;
 		int			getAttackDamage(void) const;

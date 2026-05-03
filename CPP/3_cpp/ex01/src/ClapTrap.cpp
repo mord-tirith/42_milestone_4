@@ -6,7 +6,7 @@
 /*   By: thenriqu <thenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 12:51:18 by thenriqu          #+#    #+#             */
-/*   Updated: 2026/05/03 15:04:03 by thenriqu         ###   ########.fr       */
+/*   Updated: 2026/05/03 17:25:06 by thenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ClapTrap::getEnergyPoints(void) const {
 }
 
 int	ClapTrap::getHitPoints(void) const {
-	return this->energyPoints;
+	return this->hitPoints;
 }
 
 std::string	ClapTrap::getName(void) const {

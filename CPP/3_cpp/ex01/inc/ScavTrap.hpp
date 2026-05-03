@@ -6,7 +6,7 @@
 /*   By: thenriqu <thenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 14:57:40 by thenriqu          #+#    #+#             */
-/*   Updated: 2026/05/03 15:24:25 by thenriqu         ###   ########.fr       */
+/*   Updated: 2026/05/03 17:09:35 by thenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ class ScavTrap: public ClapTrap {
 		ScavTrap&	operator=(const ScavTrap& that);
 
 		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
+
 		void	guardGate(void);
 
 		bool	getStatus(void) const;

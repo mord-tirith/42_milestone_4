@@ -6,7 +6,7 @@
 /*   By: thenriqu <thenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 15:07:31 by thenriqu          #+#    #+#             */
-/*   Updated: 2026/05/03 15:44:24 by thenriqu         ###   ########.fr       */
+/*   Updated: 2026/05/03 17:15:16 by thenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ScavTrap::ScavTrap(const ScavTrap& that) : ClapTrap(that), guardMode(that.guardM
 }
 
 ScavTrap::~ScavTrap(void) {
-	std::cout << "~ScavTrap destructor called on" << this->getName() << std::endl;
+	std::cout << "~ScavTrap destructor called on " << this->getName() << std::endl;
 }
 
 /*  Operators Overloads  */
@@ -99,3 +99,40 @@ void	ScavTrap::guardGate(void) {
 
 	this->guardMode = !this->guardMode;
 }
+
+void	ScavTrap::takeDamage(unsigned int amount) {
+	std::string msg = this->getName();
+
+	if (this->getHitPoints() <= 0)
+	{
+		std::cout << "Why, dude? ScavTrap " << msg << " is already dead!" << std::endl;
+		return ;
+	}
+
+	std::cout << "ScavTrap " << msg << " took " << amount << " points of damage!" << std::endl;
+	this->setHitPoints(this->getHitPoints() - amount);
+}
+
+void	ScavTrap::beRepaired(unsigned int amount) {
+	std::string msg = this->getName();
+	
+	if (this->getEnergyPoints() <= 0 || this->getHitPoints() <= 0)
+	{
+		std::string which;
+		if (this->getEnergyPoints() <= 0 && this->getHitPoints() <= 0)
+			which = "Hit Points and Energy Points!";
+		else if (this->getEnergyPoints() <= 0)
+			which = "Energy Points!";
+		else
+			which = "Hit Points!";
+
+		std::cout << "ScavTrap " << msg << " can't repair: out of " << which << std::endl;
+		return ;
+	}
+	std::cout << "ScavTrap " << msg << " repairs itself for " << amount << " Hit Points!" << std::endl;
+	this->setHitPoints(this->getHitPoints() + amount);
+	std::cout << "New health: " << this->getHitPoints() << std::endl;
+
+	this->setEnergyPoints(this->getEnergyPoints() - 1);
+}
+
