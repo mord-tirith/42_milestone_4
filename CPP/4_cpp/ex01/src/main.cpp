@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thenriqu <thenriqu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/11 14:21:24 by thenriqu          #+#    #+#             */
-/*   Updated: 2026/05/11 14:21:28 by thenriqu         ###   ########.fr       */
+/*   Created: 2026/05/11 15:08:39 by thenriqu          #+#    #+#             */
+/*   Updated: 2026/05/11 15:08:41 by thenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "Animal.hpp"
-#include "WrongCat.hpp"
-#include "WrongAnimal.hpp"
 
 void	runWrong(void) {
 
